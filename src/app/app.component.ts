@@ -6,19 +6,18 @@ import { ListServiceService } from './list-service.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [ListServiceService]
 })
 export class AppComponent {
-  items : Subject<any[]> = new Subject<any[]>();
+  items : Observable<any[]>;
+
+  constructor(private service: ListServiceService){}
 
   ngOnInit(){
 
-    setTimeout( ()=> {
-      this.items.next([
-        {firstName: "Philip", lastName: "Plant"},
-        {firstName: "Sinan", lastName: "Nar"}
-      ]);
-    }, 1000);
+    this.items = this.service.getList();
+    
 
   }
 
