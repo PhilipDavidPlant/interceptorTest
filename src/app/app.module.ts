@@ -4,6 +4,9 @@ import { AppComponent } from './app.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { LocalCacheInterceptor } from './local-cache.inerceptor';
 import { HttpClientModule } from '@angular/common/http';
+import { JohnnyCache } from './johnny-cache';
+import { HttpCache } from './http-cache';
+
 @NgModule({
   declarations: [
     AppComponent
@@ -13,11 +16,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule
   ],
   providers: [
-    {
+  {
     provide: HTTP_INTERCEPTORS,
     useClass: LocalCacheInterceptor,
     multi: true,
-  }],
+  },
+  { provide: HttpCache, useClass: JohnnyCache }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

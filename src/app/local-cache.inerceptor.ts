@@ -3,12 +3,16 @@ import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpResponse} fro
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 import 'rxjs/add/operator/do';
+import { HttpCache } from './http-cache';
 
 @Injectable()
 export class LocalCacheInterceptor implements HttpInterceptor {
  
+  constructor(private localCache : HttpCache){}
+
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-      
+     
+
   	// Before doing anything, it's important to only cache GET requests.
     // Skip this interceptor if the request method isn't GET.
     if (req.method !== 'GET') {
@@ -16,6 +20,7 @@ export class LocalCacheInterceptor implements HttpInterceptor {
     }
  
     console.log("intercept");
+
 
     // First, check the cache to see if this request exists.
       // A cached response exists. Serve it instead of forwarding
@@ -34,6 +39,8 @@ export class LocalCacheInterceptor implements HttpInterceptor {
     return Observable.of(response);
 
  
+
+
     // No cached response exists. Go to the network, and cache
     // the response when it arrives.
     // return next.handle(req).do(event => {
