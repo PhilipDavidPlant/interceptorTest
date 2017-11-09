@@ -29,11 +29,15 @@ export class LocalCacheInterceptor implements HttpInterceptor {
         }
 
         // No cached response exists. Go to the network, and cache
-        // the response when it arrives.
+        // the response when it arrives
+        const started = Date.now();
+        
         return next.handle(req).do(event => {
         // Remember, there may be other events besides just the response.
         if (event instanceof HttpResponse) {
             // Update the cache.
+            const elapsed = Date.now() - started;
+            console.log(elapsed + "ms");
             this.cache.put(req, event);
         }
         });
