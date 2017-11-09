@@ -25,7 +25,7 @@ export class LocalCacheInterceptor implements HttpInterceptor {
         if (cachedResponse) {
         // A cached response exists. Serve it instead of forwarding
         // the request to the next handler.
-        return Observable.of(cachedResponse);
+            return Observable.of(cachedResponse);
         }
 
         // No cached response exists. Go to the network, and cache
@@ -37,8 +37,7 @@ export class LocalCacheInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
             // Update the cache.
             const elapsed = Date.now() - started;
-            console.log(elapsed + "ms");
-            this.cache.put(req, event);
+            this.cache.put(req, event, elapsed);
         }
         });
 

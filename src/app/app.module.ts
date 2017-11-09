@@ -7,9 +7,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { JohnnyCache } from './johnny-cache';
 import { HttpCache } from './http-cache';
 
+import { GetKeysPipe } from './object-keys.pipe';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GetKeysPipe
   ],
   imports: [
     BrowserModule,

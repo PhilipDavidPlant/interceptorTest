@@ -14,4 +14,5 @@ export class CacheHead{
 export class TripTimes{
     timesMilliseconds: number[] = [];
     averageMilliseconds: number;
+    outlierTimes: number[] = [];
 }

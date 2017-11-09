@@ -9,6 +9,6 @@ export abstract class HttpCache {
     /**
      * Adds or updates the response in the cache.
      */
-    abstract put(req: HttpRequest<any>, resp: HttpResponse<any>): void;
+    abstract put(req: HttpRequest<any>, resp: HttpResponse<any>, requestTimeElapsedMilliseconds:number): void;
 }
 
