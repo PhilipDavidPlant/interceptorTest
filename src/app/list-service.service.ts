@@ -10,15 +10,8 @@ export class ListServiceService {
 
   getList() : Observable<any>{
 
-    return this.http.get('https://jsonplaceholder.typicode.com/posts');
+    return this.http.get('https://jsonplaceholder.typicode.com/comments');
 
-    // return  Observable.from<any[]>([
-    //   [
-    //       {firstName: "Philip", lastName: "Plant"},
-    //       {firstName: "Sinan", lastName: "Nar"},
-    //       {firstName: "Arad", lastName: "Haghi"}
-    //   ]
-    // ]);
   }
 
 

@@ -1,10 +1,10 @@
 <table border="1">
   <tr>
-  <th>First Name</th>
-    <th>Last Name</th>
+  <th>Id</th>
+    <th>Title</th>
   <tr>
   <tr *ngFor="let item of items | async">
-    <td>{{ item.firstName }}</td>
-    <td>{{ item.lastName }}</td>
+    <td>{{ item.id }}</td>
+    <td>{{ item.title }}</td>
   <tr>
 </table>

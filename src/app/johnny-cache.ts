@@ -5,18 +5,20 @@ import { Observable } from 'rxjs/Observable';
 
 @Injectable()
 export class JohnnyCache implements HttpCache{
+
+    store:any = localStorage;
+
     get(req: HttpRequest<any>): HttpResponse<any[]> {
-        const response = new HttpResponse<any[]>({
-            body: [
-                {firstName: "Philip", lastName: "Plant"},
-                {firstName: "Sinan", lastName: "Nar"},
-                {firstName: "Arad", lastName: "Haghi"}
-            ]
-        });
-        return response;
-        //return Observable.of(response);
+
+        if(this.store[req.urlWithParams]){
+            let body = JSON.parse(this.store.getItem(req.urlWithParams));
+            return new HttpResponse<any[]>({body:body});
+        }else{
+            return;
+        }
+              
     }
     put(req: HttpRequest<any>, resp: HttpResponse<any>): void {
-        throw new Error("Method not implemented.");
+        this.store.setItem(req.urlWithParams, JSON.stringify(resp.body));
     }
 }
