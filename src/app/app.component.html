@@ -1,8 +1,26 @@
-<table border="1" *ngIf="items | async">
+<table *ngIf="items | async">
   <tr>
     <th *ngFor="let key of items | async | keys:'array'">{{key}}</th>
   <tr>
   <tr *ngFor="let item of items | async">
-    <td *ngFor="let key of item | keys:'object'">{{ item[key] }}</td>
+    <td *ngFor="let key of item | keys:'object'">
+      <ng-container *ngIf="key !== 'company' && key !== 'address'">
+          {{ item[key] }}
+      </ng-container>
+      <ng-container *ngIf="key === 'company'">
+        <ul>
+          <li *ngFor="let listKey of item[key] | keys:'object'"><strong>{{ listKey }}:</strong> {{ item[key][listKey] }}</li>
+        </ul>
+      </ng-container>
+      <ng-container *ngIf="key === 'address'">
+          <ul>
+            <li *ngFor="let listKey of item[key] | keys:'object'">
+              <ng-container *ngIf="listKey !== 'geo'">
+                <strong>{{ listKey }}:</strong> {{ item[key][listKey] }}
+              </ng-container>
+            </li>
+          </ul>
+        </ng-container>
+    </td>
   <tr>
 </table>
