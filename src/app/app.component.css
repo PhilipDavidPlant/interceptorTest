@@ -24,13 +24,19 @@ th {
 
 td{
     text-align:left;
+    vertical-align: top;
 }
 
 ul{
     list-style-type: none;
     padding-left:0px;
+    margin:0;
 }
 
 li{
-    padding:5px;
+    padding-bottom:8px;
+}
+
+ul li:last-of-type{
+    padding-bottom:0; 
 }

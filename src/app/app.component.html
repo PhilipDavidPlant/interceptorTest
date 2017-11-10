@@ -9,14 +9,14 @@
       </ng-container>
       <ng-container *ngIf="key === 'company'">
         <ul>
-          <li *ngFor="let listKey of item[key] | keys:'object'"><strong>{{ listKey }}:</strong> {{ item[key][listKey] }}</li>
+          <li *ngFor="let listKey of item[key] | keys:'object'">{{ listKey }}: {{ item[key][listKey] }}</li>
         </ul>
       </ng-container>
       <ng-container *ngIf="key === 'address'">
           <ul>
             <li *ngFor="let listKey of item[key] | keys:'object'">
               <ng-container *ngIf="listKey !== 'geo'">
-                <strong>{{ listKey }}:</strong> {{ item[key][listKey] }}
+                {{ listKey }}: {{ item[key][listKey] }}
               </ng-container>
             </li>
           </ul>
